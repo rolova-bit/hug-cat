@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hug Cat 🐱</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(#ffe8a3, #ffd36b);
+    }
+
+    #cat {
+      width: min(70vw, 500px); 
+      transition: transform 0.2s ease, filter 0.2s ease;
+      user-select: none;
+    }
+
+    /* Smooth "hug feel" */
+    .hugging {
+      transform: scale(1.08);
+      filter: brightness(1.05);
+    }
+  </style>
+</head>
+<body>
+
+<img id="cat" src="idle.png" draggable="false">
+
+<script>
+  const cat = document.getElementById("cat");
+
+  function startHug() {
+    cat.src = "hug.png";
+    cat.classList.add("hugging");
+    playRandomMeow();
+  }
+
+  function endHug() {
+    cat.src = "idle.png";
+    cat.classList.remove("hugging");
+  }
+
+  // PC (mouse)
+  cat.addEventListener("mousedown", startHug);
+  window.addEventListener("mouseup", endHug);
+
+  // Mobile (touch)
+  cat.addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    startHug();
+  });
+
+  window.addEventListener("touchend", endHug);
+
+
+
+  // preload sounds
+const meows = [
+  new Audio("meow1.mp3"),
+  new Audio("meow2.mp3"),
+  new Audio("meow3.mp3")
+];
+
+let lastPlayed = -1;
+
+function playRandomMeow() {
+  // stop all sounds first (prevents overlap)
+  meows.forEach(sound => {
+    sound.pause();
+    sound.currentTime = 0;
+  });
+
+  let index;
+
+  // ensure different from last sound
+  do {
+    index = Math.floor(Math.random() * meows.length);
+  } while (index === lastPlayed);
+
+  lastPlayed = index;
+
+  meows[index].play();
+}
+</script>
+
+</body>
+</html>
