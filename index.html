@@ -13,10 +13,17 @@
     }
 
     #cat {
-      width: min(70vw, 500px); 
-      transition: transform 0.2s ease, filter 0.2s ease;
-      user-select: none;
-    }
+  width: min(70vw, 500px);
+  transition: transform 0.2s ease, filter 0.2s ease;
+  user-select: none;
+}
+
+/* 📱 Phone view */
+@media (max-width: 600px) {
+  #cat {
+    width: 90vw; /* much bigger on phone */
+  }
+}
 
     /* Smooth "hug feel" */
     .hugging {
