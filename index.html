@@ -12,16 +12,17 @@
       background: linear-gradient(#ffe8a3, #ffd36b);
     }
 
-    #cat {
-  width: min(70vw, 500px);
+#cat {
+  width: min(60vw, 500px);
   transition: transform 0.2s ease, filter 0.2s ease;
   user-select: none;
 }
 
-/* 📱 Phone view */
+/* 📱 PHONE (this is the important part) */
 @media (max-width: 600px) {
   #cat {
-    width: 90vw; /* much bigger on phone */
+    width: 95vw;   /* almost full width */
+    max-width: none;
   }
 }
 
